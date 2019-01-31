@@ -1,0 +1,135 @@
+
+%  Relevant files
+
+InitCondFile      ./output/ics
+OutputDir         ./output
+
+EnergyFile        energy.txt
+InfoFile          info.txt
+TimingsFile       timings.txt
+CpuFile           cpu.txt
+TimebinFile       timebin.txt
+SnapshotFileBase  PART
+RestartFile       restart
+
+
+% CPU-time limit
+
+TimeLimitCPU      43200.0
+ResubmitOn        0
+ResubmitCommand   ./resubmitjob
+
+
+% Code options
+
+ICFormat                   1
+SnapFormat                 2
+PeriodicBoundariesOn       1
+ComovingIntegrationOn      1
+CoolingOn                  1
+StarformationOn            1
+NumFilesPerSnapshot        4
+NumFilesWrittenInParallel  4
+
+
+% Run characteristics
+
+TimeBegin       0.010
+TimeMax         0.333333
+Omega0          0.3
+OmegaLambda     0.7
+OmegaBaryon     0.00
+HubbleParam     0.6724
+BoxSize         60000.0
+
+
+% Output frequency and restart files
+
+OutputListFilename     ./outputs.txt
+OutputListOn           1
+TimeBetSnapshot        0.2
+TimeOfFirstSnapshot    0.2
+CpuTimeBetRestartFile  21600.0
+TimeBetStatistics      0.25
+
+
+% Lyman-alpha forest output
+
+TimeFirstLineOfSight     0.07692307692
+
+
+% Accuracy of time integration
+
+TypeOfTimestepCriterion  0
+MaxSizeTimestep          0.1
+MinSizeTimestep          0.00
+MaxRMSDisplacementFac    0.20
+ErrTolIntAccuracy        0.05
+
+
+% Tree algorithm and force accuracy
+
+TypeOfOpeningCriterion     1
+ErrTolTheta                0.6
+ErrTolForceAcc             0.0025
+TreeDomainUpdateFrequency  0.01
+
+
+% Memory allocation
+% Set MaxMemSize to approximately 80 percent core memory
+
+PartAllocFactor  20
+MaxMemSize       8000
+BufferSize       75
+
+
+%  Parameters of SPH
+
+% Note: if assuming coupling to the CMB at z>250,
+% and adiabatic cooling thereafter, then
+% InitGasTemp ~ 2.73*(1.0+redshift)*(1.0+redshift)/251.0;
+
+DesNumNgb           40
+MaxNumNgbDeviation  1
+ArtBulkViscConst    1.0
+InitGasTemp         108.76
+MinGasTemp          25.0
+CourantFac          0.15
+
+
+% Softening lengths
+
+MinGasHsmlFractional     0.1
+
+SofteningGas             1.04
+SofteningHalo            1.04
+SofteningDisk            0.0
+SofteningBulge           0.0
+SofteningStars           1.04
+SofteningBndry           0.0
+
+SofteningGasMaxPhys      1.04
+SofteningHaloMaxPhys     1.04
+SofteningDiskMaxPhys     0.0
+SofteningBulgeMaxPhys    0.0
+SofteningStarsMaxPhys    1.04
+SofteningBndryMaxPhys    0.0
+
+
+% Multi-phase star formation
+
+CritPhysDensity   0
+MaxSfrTimescale   1.5
+CritOverDensity   1000.0
+TempSupernova     1e+08
+TempClouds        1000
+FactorSN          0.1
+FactorEVP         1000
+
+% System of units
+
+UnitLength_in_cm         3.085678e21
+UnitMass_in_g            1.989e43
+UnitVelocity_in_cm_per_s 1e5
+GravityConstantInternal  0
+

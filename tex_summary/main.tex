@@ -6,6 +6,7 @@
 \usepackage{hyperref}
 \usepackage{subfigure}
 \usepackage{titlesec}
+\usepackage{showlabels}
 \newcommand{\lya}{Ly$\alpha$ }
 \newcommand{\mnras}{{\em Mon. Not. Roy. Astron. Soc. }}
 \newcommand{\apjl}{{\em Astrophys. J. Let. }}
@@ -22,6 +23,7 @@
 \def\pr{{Phys.\ Rev.\ }}
 \def\astropart{{Astro-particle Phys.~}}
 \def\rvmp{{Rev.\ Mod.\ Phys.\ }}
+\def\pvm#1{[PM: {\it #1}] }
 \bibliographystyle{h-physrev}
 \textwidth=430pt
 \textheight=700pt
@@ -78,7 +80,17 @@ We find that the linear growth is accurate for simulations with DM-only, but whe
 	\subfigure{\includegraphics[scale=0.40]{Gadget3/2boxG3_1pc_1fluids_z2.pdf}}
 	\caption{Left: MP-Gadget, $512^3$ particle DM-only sim. Right: P-Gadget3, $256^3$ particle DM-only
 sim. Shaded area represents the $1\%$ error region, and we show results for $L=300h/\mathrm{Mpc}$ and
-$L=60h/\mathrm{Mpc}$ boxes to cover a larger range of $k$ values. There is some scatter in the modes, but broadly the growth is accurate and in agreement with the predictions of linear theory. We note that in the P-Gadget3 simulations, there is an excess of power in the low-$k$ modes of the small box. We think this is a binning issue caused by the fact that the $k$-bins in this power spectrum estimator are large, and around the BAO scale will have significant gradient across them.}
+$L=60h/\mathrm{Mpc}$ boxes to cover a larger range of $k$ values. There is some scatter in the modes, but broadly the growth is accurate and in agreement with the predictions of linear theory. We note that in the P-Gadget3 simulations, there is an excess of power in the low-$k$ modes of the small box. We think this is a binning issue caused by the fact that the $k$-bins in this power spectrum estimator are large, and around the BAO scale will have significant gradient across them.
+\pvm{To be clear, when you say ``CLASS" in the denominator, you mean the 
+similarly binned spectrum with mode amplitudes computed at this 
+redshift using the same IC and CLASS transfer functions? 
+I'm asking because it seems like that
+should take out the kind of bin-offset effects you mention... and also I'm 
+surprised there is so much scatter... If you are using 2LPT for the IC, it 
+might be interesting to ``set up IC'' at $z=2$ and compare to that... even
+1LPT, i.e., Zel'dovich, IC would have non-linear effects in mass power. I guess
+scatter is less of an issue for your b-c comparison, but it might be a useful
+sanity check to compute 2LPT prediction for $z=2$ and $z=9$. }}
 \end{figure}
 
 \clearpage
@@ -101,7 +113,8 @@ $L=60h/\mathrm{Mpc}$ boxes to cover a larger range of $k$ values. There is some 
 	\caption{The same test as in the previous figure but this time with both DM and baryon particles, with MP-Gadget on left and
 P-Gadget3 on the right. Again we have used two box sizes, with $L=300h/\mathrm{Mpc}$ shown in squares,
 and $L=60h/\mathrm{Mpc}$ in circles. We plot the power in each simulation divided by the linear theory
-prediction for that individual species. For the case of multiple species, we see that the baryon power doesn't catch up to the CDM power as quickly as linear theory predicts. In MP-Gadget, the error in the baryon and CDM power approximately cancels out to give an accurate total matter, however in P-Gadget3, even the total growth is inaccurate with multiple species.}
+prediction for that individual species. For the case of multiple species, we see that the baryon power doesn't catch up to the CDM power as quickly as linear theory predicts. In MP-Gadget, the error in the baryon and CDM power approximately cancels out to give an accurate total matter, however in P-Gadget3, even the total growth is inaccurate with multiple species.
+\pvm{Why does Fig. \ref{fig:treenotree} have so much less scatter?}}
 \end{figure}
 
 \clearpage
@@ -118,7 +131,8 @@ prediction for that individual species. For the case of multiple species, we see
 	\subfigure{\includegraphics[scale=0.45]{MPGadget/bycdm_MPGadget_z49_.pdf}}
 	\subfigure{\includegraphics[scale=0.45]{MPGadget/bycdm_MPGadget_z9_.pdf}}	
 	\subfigure{\includegraphics[scale=0.45]{MPGadget/bycdm_MPGadget_z2_.pdf}}
-	\caption{Effect of Tree on the ratios of the baryon and CDM power in MP-Gadget simulations. Turning on the Tree has a significant effect on the relative power in the two particle species, even on large scales.}
+	\caption{Effect of Tree on the ratios of the baryon and CDM power in MP-Gadget simulations. Turning on the Tree has a significant effect on the relative power in the two particle species, even on large scales.
+\label{fig:treenotree}}
 \end{figure}
 
 \clearpage
@@ -153,6 +167,15 @@ We present a set of simulations aimed at testing the accuracy of the growth of s
 
 \subsection{Appendix/Questions from Pat}
 
+\pvm{It would be good to see if the offset depends on the initial power 
+(displacement) level, e.g., 1\% of Planck vs. 10\%.
+}
+
+\pvm{You could check for post-reionization Compton drag effects in CAMB by
+comparing transfer functions with significantly different optical depth
+values... i.e., default expectation would be that this effect would be tiny,
+but... I'm too lazy to figure out from Chen paper what they're saying the
+size of effect is.} 
 
 \bibliography{refs}
 

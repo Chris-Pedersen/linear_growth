@@ -91,6 +91,9 @@ might be interesting to ``set up IC'' at $z=2$ and compare to that... even
 1LPT, i.e., Zel'dovich, IC would have non-linear effects in mass power. I guess
 scatter is less of an issue for your b-c comparison, but it might be a useful
 sanity check to compute 2LPT prediction for $z=2$ and $z=9$. }}
+\CP{The modes aren't similarly binned at the moment - I am interpolating a very finely
+binned CAMB power spectra so the binning in the two power spectra is different.
+The ICs are also Zel'dovich, not 2LPT.}
 \end{figure}
 
 \clearpage
@@ -115,6 +118,8 @@ P-Gadget3 on the right. Again we have used two box sizes, with $L=300h/\mathrm{M
 and $L=60h/\mathrm{Mpc}$ in circles. We plot the power in each simulation divided by the linear theory
 prediction for that individual species. For the case of multiple species, we see that the baryon power doesn't catch up to the CDM power as quickly as linear theory predicts. In MP-Gadget, the error in the baryon and CDM power approximately cancels out to give an accurate total matter, however in P-Gadget3, even the total growth is inaccurate with multiple species.
 \pvm{Why does Fig. \ref{fig:treenotree} have so much less scatter?}}
+\CP{This is because the noise in each mode is the same in the CDM and baryons, so the
+ratio of the two is smooth}
 \end{figure}
 
 \clearpage
@@ -163,22 +168,28 @@ prediction for that individual species. For the case of multiple species, we see
 
 \clearpage
 \subsection{Summary}
-We present a set of simulations aimed at testing the accuracy of the growth of structure in Gadget cosmology simulations by reducing their non-linearities at low redshift and comparing the power spectra with that predicted by linear theory. We find good agreement in the case of simulations with only one particle type, but find that the simulations do not produce correct clustering statistics for each individual particle type in the case of simulations involving both CDM and baryon particles seeded with different initial power spectra. The Tree algorithm was shown to have a significant effect on the relative power in the two species, even on large scales, although in the opposite direction to that found in \cite{Angulo2013}. We note here that if you swap the short range force from the Tree to a direct summation solver, this does not solve the problem. There is some disagreement on small scales on the order of $5\%$ when comparing the short range Tree with direct summation, however the large scale power is unaffected meaning this issue is not a result of inaccuracy of the Tree algorithm. Finally we showed that adaptive softening can improve the relative power issue on large scales, but at the expense of suppressing power on small scales, which is a similar effect to turning the Tree off. So currently, the trade off appears to be between having accurate total matter on all scales but with low baryon power, or accurate power in both CDM and baryons on large scales but with low power in all species on small scales. We have also checked the effect of changing the range of the force splitting by $25\%$ and find that this has no effect on the linear growth issue.
+We present a set of simulations aimed at testing the accuracy of the growth of structure in Gadget cosmology simulations by reducing their non-linearities at low redshift and comparing the power spectra with that predicted by linear theory. We find good agreement in the case of simulations with only one particle type, but find that the simulations do not produce correct clustering statistics for each individual particle type in the case of simulations involving both CDM and baryon particles seeded with different initial power spectra. The Tree algorithm was shown to have a significant effect on the relative power in the two species, even on large scales, although in the opposite direction to that found in \cite{Angulo2013}. We note here that if you swap the short range force from the Tree to a direct summation solver, this does not solve the problem. There is some disagreement on small scales on the order of $5\%$ when comparing the short range Tree with direct summation, however the large scale power is unaffected meaning this issue is not a result of inaccuracy of the Tree algorithm. Finally we showed that adaptive softening can improve the relative power issue on large scales, but at the expense of suppressing power on small scales, which is a similar effect to turning the Tree off. So currently, the trade off appears to be between having accurate total matter on all scales but with low baryon power, or accurate power in both CDM and baryons on large scales but with low power in all species on small scales.
 \pvm{You do say here that you checked this... but you don't sound so 
 confident in conversations. I'd like to see at least a factor 2 bigger
 $r_s$.}
+\CP{Yes this was a mistake, I added this after making small changes to the transition
+scale before we realised that the code couldn't actually handle this.}
 
 \subsection{Appendix/Questions from Pat}
 
 \pvm{It would be good to see if the offset depends on the initial power 
 (displacement) level, e.g., 1\% of Planck vs. 10\%.
 }
+\CP{I have checked this, and its independent of the amplitdue of the initial power,
+i.e. if you use large boxes and 100\% Planck amplitude, you still get the same offset.
+Also the same for 10\%}
 
 \pvm{You could check for post-reionization Compton drag effects in CAMB by
 comparing transfer functions with significantly different optical depth
 values... i.e., default expectation would be that this effect would be tiny,
 but... I'm too lazy to figure out from Chen paper what they're saying the
 size of effect is.} 
+
 
 \bibliography{refs}
 

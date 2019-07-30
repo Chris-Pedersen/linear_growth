@@ -30,7 +30,7 @@
 \textwidth=430pt
 \textheight=700pt
 \hoffset=-30pt
-\voffset=-90pt
+\voffset=-95pt
 %opening
 \title{Linear growth in Gadget cosmology simulations}
 \author{Chris Pedersen - chrisp@star.ucl.ac.uk}
@@ -82,20 +82,7 @@ We find that the linear growth is accurate for simulations with DM-only, but whe
 	\subfigure{\includegraphics[scale=0.40]{Gadget3/2boxG3_1pc_1fluids_z2.pdf}}
 	\caption{Left: MP-Gadget, $512^3$ particle DM-only sim. Right: P-Gadget3, $256^3$ particle DM-only
 sim. Shaded area represents the $1\%$ error region, and we show results for $L=300h/\mathrm{Mpc}$ and
-$L=60h/\mathrm{Mpc}$ boxes to cover a larger range of $k$ values. There is some scatter in the modes, but broadly the growth is accurate and in agreement with the predictions of linear theory. We note that in the P-Gadget3 simulations, there is an excess of power in the low-$k$ modes of the small box. We think this is a binning issue caused by the fact that the $k$-bins in this power spectrum estimator are large, and around the BAO scale will have significant gradient across them.
-\pvm{To be clear, when you say ``CLASS" in the denominator, you mean the 
-similarly binned spectrum with mode amplitudes computed at this 
-redshift using the same IC and CLASS transfer functions? 
-I'm asking because it seems like that
-should take out the kind of bin-offset effects you mention... and also I'm 
-surprised there is so much scatter... If you are using 2LPT for the IC, it 
-might be interesting to ``set up IC'' at $z=2$ and compare to that... even
-1LPT, i.e., Zel'dovich, IC would have non-linear effects in mass power. I guess
-scatter is less of an issue for your b-c comparison, but it might be a useful
-sanity check to compute 2LPT prediction for $z=2$ and $z=9$. }}
-\CP{The modes aren't similarly binned at the moment - I am interpolating a very finely
-binned CAMB power spectra so the binning in the two power spectra is different.
-The ICs are also Zel'dovich, not 2LPT.}
+$L=60h/\mathrm{Mpc}$ boxes to cover a larger range of $k$ values. There is some scatter in the modes, but broadly the growth is accurate and in agreement with the predictions of linear theory. We note that in the P-Gadget3 simulations, there is an excess of power in the low-$k$ modes of the small box. We think this is a binning issue caused by the fact that the $k$-bins in this power spectrum estimator are large, and around the BAO scale will have significant gradient across them.}
 \end{figure}
 
 \clearpage
@@ -167,6 +154,35 @@ ratio of the two is smooth}
 	\subfigure{\includegraphics[scale=0.45]{MPGadget/oversample_MPGadget_z3_.pdf}}
 	\caption{Effect of increasing the number of CDM particles to ensure that they have the same mass as baryon particles. This result significantly improves the accuracy of the power in each species at low $z$, but at the cost of a factor of 6 increase in CPU time, and the high $z$ growth is still not accurate.}
 \end{figure}
+\clearpage
+\subsection{GLASS initial conditions}
+
+\begin{figure}[h]
+        \centering
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/GlassOn_lowamp_z99.pdf}}
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/GlassOn_lowamp_z49.pdf}}
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/GlassOn_lowamp_z9.pdf}}
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/GlassOn_lowamp_z3.pdf}}
+        \caption{Effect of using GLASS ICs in the baryons in simulations in the reduced
+amplitude cosmology. Here the CDM particles are
+seeded using the standard grid ICs, but the baryons are initialised using a GLASS file
+in order to break the regularity of the staggered grid structure. The spike in baryon
+power at high $k$ is the result of a $\propto k^4$ noise that comes from the GLASS file.
+The disparity on large scales between the simulation power and linear theory is reduced
+significantly at $z=2$, with a slight excess in baryon power at $z=9$. Not sure why there is
+also a spike in CDM power on small scales.}
+\end{figure}
+\clearpage
+\begin{figure}[h]
+        \centering
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/GlassOn_fullamp_z99.pdf}}
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/GlassOn_fullamp_z49.pdf}}
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/GlassOn_fullamp_z9.pdf}}
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/GlassOn_fullamp_z3.pdf}}
+        \caption{The same test as previous, except run with full amplitude. The notable
+differences are that the GLASS noise is less prominent than in the low amplitude test,
+and the CDM power doesn't spike at high $k$.}
+\end{figure}
 
 \clearpage
 \subsection{Summary}
@@ -191,6 +207,20 @@ comparing transfer functions with significantly different optical depth
 values... i.e., default expectation would be that this effect would be tiny,
 but... I'm too lazy to figure out from Chen paper what they're saying the
 size of effect is.} 
+
+\pvm{To be clear, when you say ``CLASS" in the denominator, you mean the
+similarly binned spectrum with mode amplitudes computed at this
+redshift using the same IC and CLASS transfer functions?
+I'm asking because it seems like that
+should take out the kind of bin-offset effects you mention... and also I'm
+surprised there is so much scatter... If you are using 2LPT for the IC, it
+might be interesting to ``set up IC'' at $z=2$ and compare to that... even
+1LPT, i.e., Zel'dovich, IC would have non-linear effects in mass power. I guess
+scatter is less of an issue for your b-c comparison, but it might be a useful
+sanity check to compute 2LPT prediction for $z=2$ and $z=9$. }
+\CP{The modes aren't similarly binned at the moment - I am interpolating a very finely
+binned CAMB power spectra so the binning in the two power spectra is different.
+The ICs are also Zel'dovich, not 2LPT.}
 
 
 \bibliography{refs}

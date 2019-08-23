@@ -155,6 +155,20 @@ ratio of the two is smooth}
 	\caption{Effect of increasing the number of CDM particles to ensure that they have the same mass as baryon particles. This result significantly improves the accuracy of the power in each species at low $z$, but at the cost of a factor of 6 increase in CPU time, and the high $z$ growth is still not accurate.}
 \end{figure}
 \clearpage
+
+\subsection{Low PM grid resolution}
+\begin{figure}[h]
+        \centering
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/lowPM_MPGadget_z99_.pdf}}
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/lowPM_MPGadget_z49_.pdf}}
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/lowPM_MPGadget_z9_.pdf}}
+        \subfigure{\includegraphics[scale=0.45]{MPGadget/lowPM_MPGadget_z3_.pdf}}
+        \caption{Here we use $N_\mathrm{mesh}=1/2N_\mathrm{particle}$ for the particle mesh, as opposed to
+		the rest of the tests where we have $N_\mathrm{mesh}=2N_\mathrm{particle}$, while keeping the Tree on.
+		We see that there is no effect on the large scale baryon power by changing the PM-grid resolution.}
+\end{figure}
+
+
 \subsection{GLASS initial conditions}
 
 \begin{figure}[h]
